@@ -1,0 +1,62 @@
+#VRML V2.0 utf8
+
+#Created with V-Realm Builder v2.0
+#Integrated Data Systems Inc.
+#www.ids-net.com
+
+
+DEF Sistema_Coordenadas Transform {
+	children DEF Base Transform {
+		children [ 
+		    Shape {
+			    appearance	Appearance {
+				    material	Material {
+				    }
+
+			    }
+
+			    geometry	Box {
+				    size	2 0.2 2
+			    }
+
+		    }
+
+		    DEF Cable Transform {
+			    translation	0 -2.5 0
+			    children [ 
+				Shape {
+					appearance	Appearance {
+						material	Material {
+							diffuseColor	0.8 0.0977694 0.113362
+						}
+
+					}
+
+					geometry	Cylinder {
+						height	5
+						radius	0.02
+					}
+
+				}
+
+				DEF Masa Transform {
+					translation	0 -2.6 0
+					children Shape {
+						appearance	Appearance {
+							material	Material {
+								diffuseColor	0.0065239 0.0942574 0.8
+							}
+
+						}
+
+						geometry	Sphere {
+							radius	0.1
+						}
+
+					}
+				}
+			    ]
+		    }
+		]
+	}
+}
