@@ -1,0 +1,61 @@
+%%Esta es una adaptación de la libreria GPLAB%%
+%Iniciar Script
+clear all
+clc
+%Matriz de Regresión
+Numero_datos = 100;
+Numero_Variables = 2;
+X = rand(Numero_datos,Numero_Variables);
+
+%Vector de Salida (Ecuación de ejemplo u Objetivo y = 8*x1^2+5*x2^2)
+%Se puede cambiar por un vector de valores
+Y = 8*X(:,1).^2+5*X(:,2).^2;   
+
+%Simbolos de la programación genetica
+Simbolos{1} = {'^','*','/','+','-'};
+Simbolos{2} = {'x1','x2'};  
+%La longitud de las variables debe ser de 1 (ejemplo x1,x2...,x9)
+
+%Población Inicial
+Tamano = 40;
+Profundidad_del_Arbol = 5; %Maxima
+Poblacion = gpols_init(Tamano,Profundidad_del_Arbol,Simbolos);
+
+%Primer Evaluación del Fitness
+%Coeficientes 
+opt = [1 0.7 0.3 2 1 0.2 30 0.05 0 0]; 
+%opt(1): ggap, Coeficiente de reemplazo generacional (0-1)
+%opt(2): pc, Probabilidad de Cruce (0-1)
+%opt(3): pm, Probabilidad de Mutación (0-1)
+%opt(4): Algoritmo de Selección se expresa en entero y puede ser:
+%1=Ruleta,2=Torneo,3=Estocastico
+%opt(5): rmode, modo de recombinación del arbol (1 or 2)
+%1=Full,2=Grow
+%opt(6): a1, Primer parámetro de Penalización
+%opt(7): a2, Segundo parámetro de Penalización (0=no existe)
+%opt(8): OLS Umbral que decide si elimina una rama del arbol 
+%Puede ser un real de 0 a 1 o entero mayor a 2
+%opt(9): if == 1 -> Evaluación polinomica
+%opt(10): if == 1 -> Evalua todos los individuos no solamente los hijos
+Arbol = gpols_evaluate(Poblacion,[1:Tamano],X,Y,[],opt(6:9));
+
+%información de la evolución
+disp(gpols_result([],0));
+disp(gpols_result(Arbol,1));
+
+%Iteraciones
+for c = 2:2
+  %Evaluar
+  Arbol = gpols_mainloop(Arbol,X,Y,[],opt);
+  %Mostrar  
+  disp(gpols_result(Arbol,1));
+end
+
+%Resultados
+[Mejor,Arbol] = gpols_result(Arbol,2);
+tree_draw(Arbol,Simbolos);
+k = strfind(Mejor,' ');
+Ecuacion=Mejor(k(5):end);
+disp(Ecuacion)
+
+
