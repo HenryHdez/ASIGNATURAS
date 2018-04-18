@@ -19,14 +19,9 @@ GPIO.setup(led, GPIO.OUT)
 #Crear la clase Aplicación para integrarla con el timer
 Tiempo_Actual=' '
 def Tick():
-    global Tiempo_Actual
     global puerto
-    Tiempo=time.strftime("%H:%M:%S")
-    if(Tiempo_Actual!=Tiempo):
-        Tiempo_Actual=Tiempo
-        #Leer entrada
-        Salida_Label=puerto.read()
-        etiqueta.config(text=Salida_Label)       
+    Salida_Label=puerto.read()
+    etiqueta.config(text=Salida_Label)       
     #Tiempo de Actualizacion en Milisegundos
     Tiempo_Actualizacion=1000        
     app.after(Tiempo_Actualizacion,Tick)
