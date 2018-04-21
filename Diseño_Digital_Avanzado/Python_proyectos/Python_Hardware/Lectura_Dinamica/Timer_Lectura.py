@@ -22,18 +22,12 @@ GPIO.setup(led, GPIO.OUT)
 #Configurar el pin 16 como entrada Activa con 1
 GPIO.setup(btn, GPIO.IN, GPIO.PUD_UP)
 
-#Crear la clase Aplicación para integrarla con el timer
-Tiempo_Actual=' '
 def Tick():
-    global Tiempo_Actual
-    Tiempo=time.strftime("%H:%M:%S")
-    if(Tiempo_Actual!=Tiempo):
-        Tiempo_Actual=Tiempo
-        #Leer entrada
-        if GPIO.input(btn) == False:
-            etiqueta.config(text="Activa")
-        else:
-            etiqueta.config(text="Inactiva")
+    #Leer entrada
+    if GPIO.input(btn) == False:
+        etiqueta.config(text="Activa")
+    else:
+        etiqueta.config(text="Inactiva")
     #Tiempo de Actualizacion en Milisegundos
     Tiempo_Actualizacion=1000        
     app.after(Tiempo_Actualizacion,Tick)

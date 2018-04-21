@@ -21,6 +21,7 @@ Tiempo_Actual=' '
 def Tick():
     global puerto
     Salida_Label=puerto.read()
+    #puerto.write('El mensaje'), este comando es para enviar cosas via serial
     etiqueta.config(text=Salida_Label)       
     #Tiempo de Actualizacion en Milisegundos
     Tiempo_Actualizacion=1000        
