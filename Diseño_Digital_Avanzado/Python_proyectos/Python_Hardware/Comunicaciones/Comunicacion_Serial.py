@@ -20,8 +20,11 @@ GPIO.setup(led, GPIO.OUT)
 Tiempo_Actual=' '
 def Tick():
     global puerto
+    #Para leer
     Salida_Label=puerto.read()
-    #puerto.write('El mensaje'), este comando es para enviar cosas via serial
+    #Para enviar
+    Texto="Texto"
+    puerto.write(Texto)
     etiqueta.config(text=Salida_Label)       
     #Tiempo de Actualizacion en Milisegundos
     Tiempo_Actualizacion=1000        
