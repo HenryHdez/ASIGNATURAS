@@ -5,14 +5,15 @@ from Tkinter import *
 
 def Servidor():
     global Mensaje
+    ip_nodo_2="10.28.66.180"
     #Definir el socket
     Socket_Servidor=socket.socket()
     #Puerto
-    Socket_Servidor.bind(("localhost",5868))
+    Socket_Servidor.bind((ip_nodo_2,5868))
     #Numero de Clientes que puede dejar conectar
     Socket_Servidor.listen(1)
     #Ip y puerto del cliente
-    ip_Cliente="192.168.0.5"
+    ip_Cliente="10.28.66.139"
     Puerto_Cliente="5868"
     Socket_Cliente,(ip_Cliente,Puerto_Cliente)=Socket_Servidor.accept()
     Mensaje=Socket_Cliente.recv(4096).decode('utf-8')
@@ -26,9 +27,10 @@ def Servidor():
        
 #Función para enviar datos
 def Cliente():
+    ip_nodo_1="10.28.66.139"
     #Función para buscar Servidor disponible
     Socket_Cliente=socket.socket()
-    Socket_Cliente.connect(("localhost",5868))
+    Socket_Cliente.connect((ip_nodo_1,5868))
     msg="Mensaje a enviar"
     #Cerrar Puerto
     Socket_Cliente.sendall(msg.encode('utf-8'))
