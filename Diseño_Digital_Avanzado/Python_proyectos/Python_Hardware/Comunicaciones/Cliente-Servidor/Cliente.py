@@ -5,9 +5,9 @@ from Tkinter import *
 
 #Función para conectarse al servidor
 def enviar():
-    #Se Cambia por la ip del servidor
+    #Se debe cambiar la palabra localhost por la ip del servidor
     #Tenga en cuenta que deben estar en el mismo segmento de red
-    #localhost es cuando se ejecuta en un mismo equipo o local
+    #localhost es cuando se ejecuta en un mismo equipo
     ip_nodo="localhost"
     #Funciones para buscar servidor disponible
     Socket_Cliente=socket.socket()

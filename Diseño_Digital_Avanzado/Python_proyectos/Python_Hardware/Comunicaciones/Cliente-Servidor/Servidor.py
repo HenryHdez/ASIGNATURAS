@@ -6,9 +6,9 @@ from Tkinter import *
 #Parámetros para conectar dos dispositivos
 def conectar():
     global Mensaje
-    #Se Cambia por la ip del servidor
+    #Cambie la palabra localhost por la ip del dispositivo servidor
     #Tenga en cuenta que deben estar en el mismo segmento de red
-    #localhost es cuando se ejecuta en un mismo equipo o local
+    #localhost es cuando se ejecuta en un mismo equipo
     ip_nodo="localhost"
     #Definir el socket
     Socket_Servidor=socket.socket()
@@ -16,7 +16,10 @@ def conectar():
     Socket_Servidor.bind((ip_nodo,5868))
     #Numero de Clientes que puede dejar conectar
     Socket_Servidor.listen(1)
-    #Ip y puerto del cliente
+    #El servidor siempre espera a que se conecte un cliente
+    #Asi que se quedara atrapado en esta linea de codigo si no
+    #detecta conexión alguna
+    #Ip y puerto del cliente (El puerto es cualquier número de 4 digitos)
     ip_Cliente="192.168.0.6"
     Puerto_Cliente="5868"
     Socket_Cliente,(ip_Cliente,Puerto_Cliente)=Socket_Servidor.accept()

@@ -38,8 +38,9 @@ def Cliente():
 
 #Funcion para terminar la comunicación
 def Terminar():
+    ip_nodo_1="10.28.66.139"
     Socket_Cliente=socket.socket()
-    Socket_Cliente.connect(("localhost",5868))
+    Socket_Cliente.connect((ip_nodo_1,5868))
     msg="N"
     Socket_Cliente.sendall(msg.encode('utf-8'))
     Socket_Cliente.close()
