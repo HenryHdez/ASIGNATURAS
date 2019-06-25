@@ -23,6 +23,7 @@ def conectar():
     ip_Cliente="192.168.0.6"
     Puerto_Cliente="5868"
     Socket_Cliente,(ip_Cliente,Puerto_Cliente)=Socket_Servidor.accept()
+    #Indicar el numero de bits maximo que puede leer (4096 en este caso).
     Mensaje=Socket_Cliente.recv(4096).decode('utf-8')
     #Cerrar Puertos
     Socket_Servidor.close()

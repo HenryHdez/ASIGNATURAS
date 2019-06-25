@@ -13,9 +13,11 @@ def enviar():
     Socket_Cliente=socket.socket()
     Socket_Cliente.connect((ip_nodo,5868))
     msg="Mensaje a enviar"
-    #Cerrar puerto
+    #Enviar mensaje codificado en formato utf-8
     Socket_Cliente.sendall(msg.encode('utf-8'))
+    #Cerrar puerto.
     Socket_Cliente.close()
+    
 #Función para terminar el enlace
 def Terminar():
     Socket_Cliente=socket.socket()
@@ -33,5 +35,3 @@ boton2=Button(Aplicacion,text="Salir",command=Terminar)
 boton1.pack()
 boton2.pack()
 Aplicacion.mainloop()
-
-    
